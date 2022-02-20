@@ -1,2 +1,189 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<!-- ====== Hero Section Start -->
+
+{{#if errorMessage}}
+  <div
+    class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
+    role="alert"
+  >
+    <span class="font-medium">{{errorMessage}}</span>
+  </div>
+{{/if}}
+<div
+  id="home"
+  class="relative pt-[120px] md:pt-[130px] lg:pt-[160px] bg-primary"
+>
+  <div class="container">
+    <div class="flex flex-wrap items-center -mx-4">
+      <div class="w-full px-4">
+        <div
+          class="hero-content text-center max-w-[780px] mx-auto wow fadeInUp"
+          data-wow-delay=".2s"
+        >
+          <h1
+            class="text-white font-bold text-3xl sm:text-4xl md:text-[45px] leading-snug sm:leading-snug md:leading-snug mb-8"
+          >
+            Fake App To Test Auth
+          </h1>
+                      {{#if userInSession}}
+                                <p
+            class="text-base sm:text-lg sm:leading-relaxed md:text-xl md:leading-relaxed mx-auto mb-10 text-[#e4e4e4] max-w-[600px]"
+          >
+                    Your role is {{userInSession.role}}. This will affect your permissions to add or delete users.
+          </p>
+
+          {{#if boss}}
+                    <ul class="flex flex-wrap items-center justify-center mb-10">
+            <li>
+              <a
+                href="/users/add"
+                class="py-4 px-6 sm:px-10 inline-flex items-center justify-center text-center text-dark text-base bg-white hover:text-primary hover:shadow-lg font-medium rounded-lg transition duration-300 ease-in-out"
+              >
+                Add User
+              </a>
+            </li>
+            </ul>
+          {{/if}}
+                      {{else}}
+
+
+          <p
+            class="text-base sm:text-lg sm:leading-relaxed md:text-xl md:leading-relaxed mx-auto mb-10 text-[#e4e4e4] max-w-[600px]"
+          >
+            Check out the signup and signin routes.
+          </p>
+          <ul class="flex flex-wrap items-center justify-center mb-10">
+            <li>
+              <a
+                href="/signup"
+                class="py-4 px-6 sm:px-10 inline-flex items-center justify-center text-center text-dark text-base bg-white hover:text-primary hover:shadow-lg font-medium rounded-lg transition duration-300 ease-in-out"
+              >
+                Sign Up
+              </a>
+            </li>
+            <li>
+              <a
+                href="/signin"
+                target="_blank"
+                class="text-base font-medium text-white py-4 px-6 sm:px-10 flex items-center hover:opacity-70 transition duration-300 ease-in-out"
+              >
+                Sign In
+                <span class="pl-2">
+                  <svg
+                    width="20"
+                    height="8"
+                    viewBox="0 0 20 8"
+                    class="fill-current"
+                  >
+                    <path
+                      d="M19.2188 2.90632L17.0625 0.343819C16.875 0.125069 16.5312 0.0938193 16.2812 0.281319C16.0625 0.468819 16.0312 0.812569 16.2188 1.06257L18.25 3.46882H0.9375C0.625 3.46882 0.375 3.71882 0.375 4.03132C0.375 4.34382 0.625 4.59382 0.9375 4.59382H18.25L16.2188 7.00007C16.0312 7.21882 16.0625 7.56257 16.2812 7.78132C16.375 7.87507 16.5 7.90632 16.625 7.90632C16.7812 7.90632 16.9375 7.84382 17.0312 7.71882L19.1875 5.15632C19.75 4.46882 19.75 3.53132 19.2188 2.90632Z"
+                    ></path>
+                  </svg>
+                </span>
+              </a>
+            </li>
+          </ul>
+          {{/if}}
+          {{!-- <div class="text-center wow fadeInUp" data-wow-delay=".3s">
+            <img
+              src="/images/hero/brand.svg"
+              alt="image"
+              class="max-w-[250px] w-full mx-auto opacity-50 hover:opacity-100 transition duration-300 ease-in-out"
+            />
+          </div> --}}
+        </div>
+      </div>
+
+      <div class="w-full px-4 my-10 grid grid-cols-4 gap-4">
+        {{!-- <div
+          class="mx-auto max-w-[845px] relative z-10 wow fadeInUp"
+          data-wow-delay=".25s"
+        > --}}
+          {{#each users}}
+
+            <div
+              class="max-w-sm bg-white rounded-lg border pt-10 border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
+            >
+              {{! <div class="flex justify-end px-4 pt-4">
+                <button
+                  id="dropdownButton"
+                  data-dropdown-toggle="dropdown"
+                  class="hidden sm:inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5"
+                  type="button"
+                >
+                  <svg
+                    class="w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  ><path
+                      d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"
+                    ></path></svg>
+                </button>
+
+                <div
+                  id="dropdown"
+                  class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700"
+                >
+                  <ul class="py-1" aria-labelledby="dropdownButton">
+                    <li>
+                      <a
+                        href="#"
+                        class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                      >Edit</a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                      >Export Data</a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        class="block py-2 px-4 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                      >Delete</a>
+                    </li>
+                  </ul>
+                </div>
+              </div> }}
+              <div class="flex flex-col items-center pb-10">
+                <img
+                  class="mb-3 w-24 h-24 rounded-full object-cover shadow-lg"
+                  src="{{profileImg}}"
+                  alt="Bonnie image"
+                />
+                <h3
+                  class="mb-1 text-xl font-medium text-gray-900 dark:text-white"
+                >{{name}}</h3>
+                <p
+                  class="text-sm text-gray-500 dark:text-gray-400"
+                >{{role}}</p>
+
+                <p
+                  class="text-sm text-blue-500 dark:text-gray-400"
+                >{{username}}</p>
+
+                {{#if ../boss}}
+                <div class="flex mt-4 space-x-3 lg:mt-6">
+                  <a
+                    href="/users/{{id}}/delete"
+                    class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  >Delete</a>
+                </div>
+                {{/if}}
+              </div>
+            </div>
+          {{/each}}
+          {{! <div class="mt-16">
+            <img
+              src="/images/hero/hero-image.jpg"
+              alt="hero"
+              class="max-w-full mx-auto rounded-t-xl rounded-tr-xl"
+            />
+          </div> }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ====== Hero Section End -->

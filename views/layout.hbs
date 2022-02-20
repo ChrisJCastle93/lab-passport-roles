@@ -1,16 +1,69 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>{{title}}</title>
-  <link rel="stylesheet" href="/stylesheets/style.css" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/tailwind.css" />
+  </head>
+  <body>
+    <!-- ====== Navbar Section Start -->
+    <div
+      class="ud-header bg-transparent absolute top-0 left-0 z-40 w-full flex items-center"
+    >
+      <div class="container">
+        <div class="flex -mx-4 items-center justify-between relative">
+          <div class="px-4 w-60 max-w-full">
+            <a href="index.html" class="navbar-logo w-full block py-5">
+              <img
+                src="/images/logo/logo-white.svg"
+                alt="logo"
+                class="w-full header-logo"
+              />
+            </a>
+          </div>
+          <div class="flex px-4 justify-end items-center w-full">
+            {{#if userInSession}}
+              <div
+                class="flex mr-3 text-sm items-center bg-white rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+              >
+                <img
+                  class="w-8 h-8 mr-4 object-cover rounded-full"
+                  src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Michelle_Borromeo_Actor_Headshots_30.jpg"
+                  alt="user photo"
+                />
+                <p class="mr-3">{{userInSession.username}}</p>
+              </div>
+              <div class="sm:flex justify-end hidden pr-16 lg:pr-0">
+                <a
+                  href="/logout"
+                  class="text-base font-medium text-white hover:opacity-70 py-3 px-7 loginBtn"
+                >
+                  Log Out
+                </a>
+              </div>
+            {{else}}
+              <div class="sm:flex justify-end hidden pr-16 lg:pr-0">
+                <a
+                  href="/signin"
+                  class="text-base font-medium text-white hover:opacity-70 py-3 px-7 loginBtn"
+                >
+                  Sign In
+                </a>
+                <a
+                  href="/signup"
+                  class="text-base font-medium text-white bg-white bg-opacity-20 rounded-lg py-3 px-6 hover:bg-opacity-100 hover:text-dark signUpBtn duration-300 ease-in-out"
+                >
+                  Sign Up
+                </a>
+              </div>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </div>
 
-  {{{body}}}
+    {{{body}}}
 
-  <script src="/javascripts/script.js"></script>
-</body>
+  </body>
 </html>

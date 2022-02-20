@@ -5,17 +5,23 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "DEBUG=starter-code:* nodemon ./bin/www",
-    "dev-windows": "nodemon ./bin/www"
+    "dev-windows": "nodemon ./bin/www",
+    "build-css": "tailwindcss -i ./src/tailwind.css -o ./public/stylesheets/tailwind.css -w"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
-    "cookie-parser": "^1.4.5",
+    "connect-mongo": "^4.6.0",
+    "cookie-parser": "^1.4.6",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-session": "^1.17.2",
     "hbs": "^4.1.0",
     "mongoose": "^6.1.2",
     "morgan": "^1.9.1",
-    "serve-favicon": "^2.5.0"
+    "passport": "^0.5.2",
+    "passport-local": "^1.0.0",
+    "tailwindcss": "^3.0.23"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
